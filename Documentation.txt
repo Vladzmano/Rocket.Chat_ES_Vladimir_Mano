@@ -88,7 +88,7 @@ At this stage I can describe the steps followed to install and deploy a local ro
 ░░░░░░░░░░░░░░░░░░░░░░░░░
 ­░ 
  Rocket Chat installation using "Docker compose" home server
-															 ░
+							     ░
                                 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 
