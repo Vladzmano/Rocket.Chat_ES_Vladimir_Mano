@@ -85,9 +85,11 @@ I tested on several operating systems and with several methods until I found the
 At this stage I can describe the steps followed to install and deploy a local rocket chat server and expose it to the internet.
 
 
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-­░ Rocket Chat installation using "Docker compose" home server ░
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░
+­░ 
+ Rocket Chat installation using "Docker compose" home server
+															 ░
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 
 ### Step 1: Prerequisites ###
