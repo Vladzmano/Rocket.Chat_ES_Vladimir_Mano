@@ -1,4 +1,5 @@
 Rocket Chat Server Setup Guide: A Journey from Beginner to Host
+
 This readme walks you through the complete process of setting up your own Rocket Chat server, from selecting the right tools and resources to deploying it online. Whether you're a server novice or a seasoned pro, this guide offers a clear path and practical tips to get your chat engine up and running.
 
 Stage 1: Planning and Preparation
