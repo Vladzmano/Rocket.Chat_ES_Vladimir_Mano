@@ -1,0 +1,22 @@
+
+### Hello & Welcome ###
+
+Thanks for giving me the opportunity to test my capacities; this challenge was entertaining.
+I learned a lot about how to use Rocket Chat and the possibilities that this open source offers.
+
+##################
+
+As you requested, I'm sharing the access credentials of a user created on my Rocket. Chat server.
+
+Please notice that the access URL may change due to the web server used to expose the local server to the internet (ngrok) renewing on every startup.
+Don't worry, I can provide you with the new URL segment you need, since Ngrok Only changes the first four characters on every reboot.
+
+
+============================================
+
+Acces URL: https://f512-177-189-46-249.ngrok-free.app/home
+username: Master
+email: yourules@yesforchecking.com
+password: ItsFriday2024
+
+============================================

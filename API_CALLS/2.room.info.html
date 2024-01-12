@@ -1,0 +1,229 @@
+# 2. Get the room information via an API endpoint
+
+# Note: the server URL could change due the ngrok behavior.
+
+###### USED CALL #####
+
+"https://f512-177-189-46-249.ngrok-free.app/api/v1/rooms.get"
+
+##### RESPONSE #####
+
+"""
+{
+    "update": [
+        {
+            "_id": "65a135c75a0ad9ab73c0a995",
+            "fname": "test",
+            "_updatedAt": "2024-01-12T12:51:19.076Z",
+            "customFields": {},
+            "topic": "123",
+            "broadcast": false,
+            "encrypted": false,
+            "name": "test",
+            "t": "c",
+            "msgs": 0,
+            "usersCount": 1,
+            "u": {
+                "_id": "FRzSLNonpguetkr2L",
+                "username": "Vlad",
+                "name": "vladimir"
+            },
+            "ts": "2024-01-12T12:51:19.053Z",
+            "ro": false,
+            "default": false,
+            "sysMes": true
+        },
+        {
+            "_id": "65a1373e99933be3f6af8489",
+            "fname": "SpaceX",
+            "_updatedAt": "2024-01-12T12:57:34.041Z",
+            "customFields": {},
+            "topic": "Im not elon Musk",
+            "broadcast": false,
+            "encrypted": false,
+            "name": "SpaceX",
+            "t": "c",
+            "msgs": 0,
+            "usersCount": 1,
+            "u": {
+                "_id": "FRzSLNonpguetkr2L",
+                "username": "Vlad",
+                "name": "vladimir"
+            },
+            "ts": "2024-01-12T12:57:34.008Z",
+            "ro": false,
+            "default": false,
+            "sysMes": true
+        },
+        {
+            "_id": "65a1375299933be3f6af848b",
+            "fname": "NothingInHere",
+            "_updatedAt": "2024-01-12T12:57:54.133Z",
+            "customFields": {},
+            "topic": "What you looking at?",
+            "broadcast": false,
+            "encrypted": false,
+            "name": "NothingInHere",
+            "t": "p",
+            "msgs": 0,
+            "usersCount": 1,
+            "u": {
+                "_id": "FRzSLNonpguetkr2L",
+                "username": "Vlad",
+                "name": "vladimir"
+            },
+            "ts": "2024-01-12T12:57:54.105Z",
+            "ro": false,
+            "default": false,
+            "sysMes": true
+        },
+        {
+            "_id": "65a1379299933be3f6af848d",
+            "fname": "Gaming",
+            "_updatedAt": "2024-01-12T12:58:58.790Z",
+            "customFields": {},
+            "topic": "Chill out",
+            "broadcast": false,
+            "encrypted": false,
+            "name": "Gaming",
+            "t": "c",
+            "msgs": 0,
+            "usersCount": 1,
+            "u": {
+                "_id": "FRzSLNonpguetkr2L",
+                "username": "Vlad",
+                "name": "vladimir"
+            },
+            "ts": "2024-01-12T12:58:58.772Z",
+            "ro": false,
+            "default": false,
+            "sysMes": true
+        },
+        {
+            "_id": "65a137a799933be3f6af848f",
+            "fname": "Shawarma",
+            "_updatedAt": "2024-01-12T12:59:19.255Z",
+            "customFields": {},
+            "topic": "Food",
+            "broadcast": false,
+            "encrypted": false,
+            "name": "Shawarma",
+            "t": "c",
+            "msgs": 0,
+            "usersCount": 1,
+            "u": {
+                "_id": "FRzSLNonpguetkr2L",
+                "username": "Vlad",
+                "name": "vladimir"
+            },
+            "ts": "2024-01-12T12:59:19.235Z",
+            "ro": false,
+            "default": false,
+            "sysMes": true
+        },
+        {
+            "_id": "FRzSLNonpguetkr2Lrocket.cat",
+            "t": "d",
+            "usernames": [
+                "rocket.cat",
+                "Vlad"
+            ],
+            "usersCount": 2,
+            "msgs": 1,
+            "ts": "2024-01-12T12:55:08.975Z",
+            "uids": [
+                "FRzSLNonpguetkr2L",
+                "rocket.cat"
+            ],
+            "default": false,
+            "ro": false,
+            "sysMes": true,
+            "_updatedAt": "2024-01-12T12:55:09.182Z",
+            "lastMessage": {
+                "rid": "FRzSLNonpguetkr2Lrocket.cat",
+                "msg": "*MongoDB Deprecated*\nMongoDB version %s is deprecated, please upgrade your installation.\nhttps://go.rocket.chat/i/mongodb-deprecated",
+                "ts": "2024-01-12T12:55:09.013Z",
+                "u": {
+                    "_id": "rocket.cat",
+                    "username": "rocket.cat",
+                    "name": "Rocket.Cat"
+                },
+                "_id": "geSAo4RYKKySxWPYA",
+                "_updatedAt": "2024-01-12T12:55:09.114Z",
+                "urls": [
+                    {
+                        "url": "https://go.rocket.chat/i/mongodb-deprecated",
+                        "meta": {}
+                    }
+                ],
+                "mentions": [],
+                "channels": [],
+                "md": [
+                    {
+                        "type": "PARAGRAPH",
+                        "value": [
+                            {
+                                "type": "BOLD",
+                                "value": [
+                                    {
+                                        "type": "PLAIN_TEXT",
+                                        "value": "MongoDB Deprecated"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "PARAGRAPH",
+                        "value": [
+                            {
+                                "type": "PLAIN_TEXT",
+                                "value": "MongoDB version %s is deprecated, please upgrade your installation."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "PARAGRAPH",
+                        "value": [
+                            {
+                                "type": "LINK",
+                                "value": {
+                                    "src": {
+                                        "type": "PLAIN_TEXT",
+                                        "value": "https://go.rocket.chat/i/mongodb-deprecated"
+                                    },
+                                    "label": [
+                                        {
+                                            "type": "PLAIN_TEXT",
+                                            "value": "https://go.rocket.chat/i/mongodb-deprecated"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "lm": "2024-01-12T12:55:09.013Z"
+        },
+        {
+            "_id": "GENERAL",
+            "ts": "2024-01-12T12:48:12.921Z",
+            "t": "c",
+            "name": "general",
+            "usernames": [],
+            "msgs": 5,
+            "usersCount": 5,
+            "_updatedAt": "2024-01-12T13:05:33.795Z",
+            "u": {
+                "_id": "rocket.cat",
+                "username": "rocket.cat",
+                "name": "Rocket.Cat"
+            },
+            "default": true
+        }
+    ],
+    "remove": [],
+    "success": true
+}
+"""

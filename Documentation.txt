@@ -1,0 +1,236 @@
+Good morning,
+ 
+To whom this material is addressed to,
+
+This is a compilation of all the actions and decisions taken before and during the creation of a server for the Open source Rocket Chat.
+
+Implementes resources:
+
+»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
+Virtual machine
+- OS: Linux mint 21.2 cinnamon
+- CPU: 4 cores
+- RAM: 4096MB
+- Storage: 40GiB
+
+Additional software:
+- Oracle VM virtualbox
+- Web server Ngrok
+- Postman API platform
+- Visual Studio
+- Docker
+»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
+
+
+
+
+Stage 1 - days 1 and 2
+***********************************
+What is rocket chat? - selecting the appropriate installation method.
+
+I started my journey by going to the official rocketchat site and researched the methods available to deploy and install a rocket chat server quickly and efficiently.
+
+I got acquainted with the requirements needed to start the installation such as Mongo DB (4.4, 5.0, 6.0) NodeJs 14.x, etc. 
+
+I researched about the endpoins (API) available and how to use them, as well as the possible difficulties when using them from postman.
+
+I watched several videos on youtube both from the company and other professionals who have used rocket chat on how to run a good installation and configuration of a server which is the first step before making requests via API.
+
+In the end I decided to start with a method I had already studied, and that was to install on an amazon AWS EC2 server using ubuntu 22.04.
+
+
+
+Stage 2 day - days 1 and 2
+***********************************
+
+Platform, systems and servers.
+
+I encountered many difficulties with the first method chosen, deploy on AWS, the limitation comes from the instance we can have on that platform, the t1 micro is not enough to contain a rochet chat server, even if I tried but in less than 1h I consumed the free resources, as I was informed by the platform.
+
+I changed my mind and tried to install everything on a virtual server via Oracle VirtualBox, this was the most efficient and cheapest method.
+
+I started testing with ubuntun jammy desktop, a total of 3 servers were set up to test the system capabilities and resources to maintain an RCH server.
+
+It was no surprise to encounter difficulties when installing and deploying RCH, some of them were:
+
+Compatibility with mongo DB versions: I could not use correctly the 5.0 and 6.0 versions, they generated errors like "core dump", or the service simply failed to start.
+
+Problems with the .env and compose.yml configuration files (in case of using docker).
+
+
+Then I started with the experimentation as described below:
+
+- first attempt: direct installation on ubuntu 22.04
+
+	I tried to complete the installation and configuration of rochetchar on an ubuntu server without success, I had problems configuring the .env file and the compatibility with the available mongo version (more details about the positive results later).
+
+- second attempt: EC2 T1 micro Amazon AWS
+	
+	For me the fastest method but limited by the budget and the mandatory security configuration to be performed on the AMI security groups and access rules.
+
+	Due to the high consumption of the application to be installed, this method was downloaded after a few hours of attempts.
+
+- third method: installation on windows using the docker desktop client
+
+	it is a fast but not resource efficient way, as the high consumption of the docker client prevented me from continuing with other tasks, causing crashes or loading problems to other applications needed for this challenge.
+
+
+Stage 3 - days 3 and 4
+***********************************
+
+implement the acquired and tested knowledge.
+
+I tested on several operating systems and with several methods until I found the most stable configuration, the selected operating system was Linux mint in its version 21.2.
+
+At this stage I can describe the steps followed to install and deploy a local rocket chat server and expose it to the internet.
+
+
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+­░ Rocket Chat installation using "Docker compose" home server ░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+
+### Step 1: Prerequisites ###
+═══════════════════════════════
+	
+	The linux server with the distro of your choice must have the following components:
+
+			» Docker and Docker compose V2
+			» MongoDB v4.4, v5.0, v6.0 (in the image available in the githib version 5.0 is provided)
+			» NodeJs v14.x
+			» Ngrok latest version 3.x
+
+	Check if you have any version of Docker using the following code:
+
+			docker info
+			docker compose version
+
+	If you don't have docker installed I can use the script to get it:
+
+			curl -L https://get.docker.com | sh
+
+	Once installed and to use docker without sudo commands you can use the following commands:
+
+			sudo usermod -aG docker $USER
+			sudo reboot (reboot the server, save changes before executing)
+
+	Note: it is recommended to install the ngrok web server after the rocker chat service deployment and startup is complete.
+
+
+### Step 2 installations ###
+══════════════════════════════
+
+	a. Defining installation paths
+
+	First of all we must define a path or directory where our app, container and other dependencies will be installed, depending on the project the path may change, but for testing purposes we recommend the following:
+
+		mkdir rocketchat
+
+	To access the path
+
+		cd /rockerchat
+
+	b. creating the container configuration files
+
+	Once in the installation path we must create 2 special files for the configuration and creation of our container that will manage the server which are compose.yml and .env.
+
+	- First we must create the file 'compose.yml' for this we use the text editor of preference, in this case "nano" or "vi".
+
+	Note: make sure you are in the installation path "/rocketchat" before proceeding.
+
+	The command would look like this
+
+	    nano compose.yml
+
+	It will open the editor where we must paste the content of this URL https://raw.githubusercontent.com/RocketChat/Docker.Official.Image/master/compose.yml
+
+	We apply the same with the .env file
+
+	    nano .env
+
+	Copy and paste the content of this URL https://raw.githubusercontent.com/RocketChat/Docker.Official.Image/master/env.example
+
+
+    Alternatively you can apply the following command to download the files mentioned above from github
+
+	    curl -L https://raw.githubusercontent.com/RocketChat/Docker.Official.Image/master/compose.yml -O
+
+
+	We quickly return to the .env file (sudo nano .env) where we modify several important parameters before launching the container, they are the following:
+
+	Line 5 RELEASE = it is recommended to place a specific version in case it is a production server and not LATEST.
+	Line 13 ROOT_URL = this defines the path to our server, it is not recommended to use 0.0.0.0.0:3000, use the host IP.
+
+	In case you have mongo Atlas
+	Line 7 MONGO_URL = this defines the path to your external database.
+
+	Example:
+
+	MONGO_URL=mongodb://<user>:<pass>@host1:27017,host2:27017,host3:27017/<databaseName>?replicaSet=<replicaSet>&ssl=true&authSource=admin.
+
+	Finally save the .env file (ctrl+O in case of nano).
+
+
+
+### Step 3 Deploying the container ###
+═══════════════════════════════════════
+
+	Now that we have configured the environment variables we can proceed to the activation of the service using the following command inside the path of our project (cd /rocketchat in our case)
+
+		docker compose up -d
+
+	This command will:
+	Start a MongoDB service named mongodb.
+	Start a service rocketchat, which will also wait for mongodb to be ready.
+
+	After a couple of minutes, the deployment will finish and you will be able to visit the rocket chat workspace using the following URLs:
+
+		http://localhost:3000
+		or
+		http://<Your hot ip>:3000
+
+	That's it, you have your own rocket chat server!
+
+### Step 4 Expose to the Internet ###
+═══════════════════════════════════════
+
+	As we mentioned before, if we want the service to be accessible to the world we must expose our service to the internet, for this we will use an open source web server called 'Ngrok'.
+
+	Note: it must be installed in the path where your project is located, in this case /rocketchat.
+
+	a. installing Ngrok
+
+		We must enter the website Ngrok.com/download, select the appropriate OS, in this case Linux.
+
+		It is recommended to use the snap package installation command, as it is faster and more efficient.
+
+		 snap install ngrok
+
+		Once installed we must authenticate our access, for this we must create an account and give the ngrok dashbor.
+
+	b. configuring and launching ngrok
+
+		Already inside the sahborad we must select in the left superior side >> stup & installation
+		then on the right side select >> linux >> select the snap tab and copy the command that includes our authentication key.
+
+		Example:
+
+		ngrok config add-authtoken <the token itself>.
+
+		When we place the above code we will receive an email to the registered email address, which we must validate. Once completed we will be able to start our web server.
+
+		To start the server we can use the following commands:
+
+		ngrok http 80 = to expose port 80
+		ngrok http 3000 = to expose port 3000 which is our case.
+
+		That's it, you now have your Rocket Chat server exposed to the internet.
+
+Additional notes:
+
+The docker-compose.yml file contains the configuration for the Docker containers.
+The .env file contains the environment variables for the Rocket Chat service.
+The ROOT_URL environment variable specifies the URL that will be used to access the Rocket Chat workspace.
+The MONGO_URL environment variable specifies the URL of the MongoDB database.
+
+
